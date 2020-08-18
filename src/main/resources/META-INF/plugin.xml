@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>com.dwj.template.webstorm</id>
+    <name>Template.js webstorm</name>
+    <vendor email="duanwenjianvip@gmail.com" url="https://github.com/yanhaijing/template.js">template.js</vendor>
+
+    <description><![CDATA[
+    Support template.js syntax highlighting.<br>
+    <em>See the github homepage for more information</em>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+<!--        <fileTypeFactory implementation="com.template.TemplateFileTypeFactory"/>-->
+        <fileType name="Template File" implementationClass="com.template.TemplateFileType"
+                  fieldName="INSTANCE" language="Template" extensions="tmpl"/>
+
+        <lang.parserDefinition language="Template"
+                               implementationClass="com.template.TemplateParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory language="Template"
+                                       implementationClass="com.template.TemplateSyntaxHighlighterFactory"/>
+
+        <colorSettingsPage implementation="com.template.TemplateColorSettingsPage"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

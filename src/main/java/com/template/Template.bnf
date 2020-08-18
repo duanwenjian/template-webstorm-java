@@ -1,0 +1,32 @@
+{
+  parserClass="com.template.parser.TemplateParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Template"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.template.psi"
+  psiImplPackage="com.template.psi.impl"
+
+  elementTypeHolderClass="com.template.psi.TemplateTypes"
+  elementTypeClass="com.template.psi.TemplateElementType"
+  tokenTypeClass="com.template.psi.TemplateTokenType"
+
+  psiImplUtilClass="com.template.psi.impl.TemplatePsiImplUtil"
+}
+
+templateFile ::= item_*
+
+private item_ ::= (property|template|COMMENT|CRLF)
+
+// template 行
+// <% ... %>
+template ::= MARKSTART modifieritems? MARKEND
+//
+modifieritems ::= SEPARATOR_START? SEPARATOR MODIFIER
+// 正常行
+//normal ::= NORMALSTART template? NORMALEND
+// 赋值变量行
+mark ::= MARKSTART SEPARATOR_START? SEPARATOR MODIFIER MARKSEND
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
